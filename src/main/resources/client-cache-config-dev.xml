@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:gfe="http://www.springframework.org/schema/gemfire"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   	http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <util:properties id="gemfireProperties">
+        <prop key="mcast-port">0</prop>
+        <prop key="log-level">info</prop>
+    </util:properties>
+
+    <gfe:client-cache id="parcel-cache" pool-name="parcels-pool" pdx-read-serialized="true" properties-ref="gemfireProperties"/>
+
+    <gfe:pool id="parcels-pool" server-group="PARCELS">
+        <gfe:locator host="localhost" port="10334"/>
+    </gfe:pool>
+
+    <gfe:client-region id="parcels"  cache-ref="parcel-cache"  pool-name="parcels-pool" shortcut="PROXY"/>
+</beans>

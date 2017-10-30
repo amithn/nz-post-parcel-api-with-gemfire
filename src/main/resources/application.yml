@@ -1,0 +1,13 @@
+# Default Application Properties
+# These can be overwritten via system properties or environment variables.
+---
+# Activate the stubs by default.
+#spring.profiles.active: stubs
+
+---
+# -- Web server --
+server:
+  auth.enabled: false
+  context_path: /
+  port: 8080
+

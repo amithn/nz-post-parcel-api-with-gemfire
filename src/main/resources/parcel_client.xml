@@ -1,0 +1,29 @@
+<!DOCTYPE client-cache PUBLIC
+        "-//GemStone Systems, Inc.//GemFire Declarative Caching 6.5//EN"
+        "http://www.gemstone.com/dtd/cache8_0.dtd">
+<client-cache>
+
+    <pool name="myPool" server-group="PARCELS">
+        <locator host="localhost" port="10334"/>
+    </pool>
+
+    <pdx>
+        <pdx-serializer>
+            <class-name>
+                org.apache.geode.pdx.ReflectionBasedAutoSerializer
+            </class-name>
+            <parameter name="classes">
+                <string>nz.co.nzpost.parcel.api.usage.*</string>
+            </parameter>
+            <parameter name="check-portability">
+                <string>true</string>
+            </parameter>
+        </pdx-serializer>
+    </pdx>
+
+    <region name="parcels">
+        <region-attributes refid="PROXY">
+        </region-attributes>
+    </region>
+
+</client-cache>

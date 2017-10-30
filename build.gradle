@@ -1,0 +1,66 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.M3'
+	}
+	repositories {
+		mavenCentral()
+		maven { url 'https://repo.spring.io/libs-snapshot' }
+		maven {
+			credentials {
+				username "xxx"
+				password "xxx"
+			}
+			url "https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire"
+		} //gemfire
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+	}
+
+
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'https://repo.spring.io/libs-snapshot'
+	}
+
+//
+}
+
+//springBoot {
+//	mainClass = "nz.co.nzpost.parcel.api.Application"
+//}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile (group: 'org.springframework.data', name: 'spring-data-gemfire', version: '2.0.0.RC2') {
+		exclude(group: 'io.pivotal.gemfire')
+	}
+
+	compile group: 'io.pivotal.gemfire', name: 'geode-core', version: '9.0.3'
+	compile group: 'joda-time', name: 'joda-time', version: '2.3'
+
+}
+
+apply plugin: 'docker'
+
+task buildDocker(type: Docker, dependsOn: build) {
+	applicationName = jar.baseName
+	dockerfile = file('docker/Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into "${stageDir}/target"
+		}
+	}
+}
