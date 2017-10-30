@@ -30,7 +30,7 @@ public class NZPostDataLoader {
         int numEvents = 0;
         Map<String, String> compositeKey;
 
-        File file = new File("/Users/anambiar/testbed/nz_post/events.csv");
+        File file = new File("./datagen/events.csv");
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String eventLine;
             while ((eventLine = br.readLine()) != null) {

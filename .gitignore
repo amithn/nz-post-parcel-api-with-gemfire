@@ -12,5 +12,6 @@ bin/
 .classpath
 .gradle/
 *.pem
+**/.DS_S*
 
 
