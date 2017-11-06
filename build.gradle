@@ -26,26 +26,13 @@ repositories {
 	maven {
 		url 'https://repo.spring.io/libs-snapshot'
 	}
-
-//
 }
-
-//springBoot {
-//	mainClass = "nz.co.nzpost.parcel.api.Application"
-//}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	compile group: 'joda-time', name: 'joda-time', version: '2.3'
 	compile 'org.springframework.data:spring-data-gemfire:2.0.0.RELEASE'
-
-	//	compile (group: 'org.springframework.data', name: 'spring-data-gemfire', version: '2.0.0.RC2') {
-	//		exclude(group: 'io.pivotal.gemfire')
-	//	}
-	//
-	//	compile group: 'io.pivotal.gemfire', name: 'geode-core', version: '9.0.3'
-
 }
 
 apply plugin: 'docker'
