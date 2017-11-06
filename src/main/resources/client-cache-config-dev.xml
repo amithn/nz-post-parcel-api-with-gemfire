@@ -16,8 +16,7 @@
     <gfe:client-cache id="parcel-cache" pool-name="parcels-pool" pdx-read-serialized="true" properties-ref="gemfireProperties"/>
 
     <gfe:pool id="parcels-pool" server-group="PARCELS">
-        <!--<gfe:locator host="localhost" port="10334"/>-->
-        <gfe:locator host="10.1.1.3" port="10334"/>
+        <gfe:locator host="localhost" port="10334"/>
     </gfe:pool>
 
     <gfe:client-region id="parcels"  cache-ref="parcel-cache"  pool-name="parcels-pool" shortcut="PROXY"/>
