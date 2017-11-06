@@ -5,13 +5,6 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven { url 'https://repo.spring.io/libs-snapshot' }
-		maven {
-			credentials {
-				username "xxx"
-				password "xxx"
-			}
-			url "https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire"
-		} //gemfire
 	}
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
@@ -43,12 +36,15 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile (group: 'org.springframework.data', name: 'spring-data-gemfire', version: '2.0.0.RC2') {
-		exclude(group: 'io.pivotal.gemfire')
-	}
 
-	compile group: 'io.pivotal.gemfire', name: 'geode-core', version: '9.0.3'
 	compile group: 'joda-time', name: 'joda-time', version: '2.3'
+	compile 'org.springframework.data:spring-data-gemfire:2.0.0.RELEASE'
+
+	//	compile (group: 'org.springframework.data', name: 'spring-data-gemfire', version: '2.0.0.RC2') {
+	//		exclude(group: 'io.pivotal.gemfire')
+	//	}
+	//
+	//	compile group: 'io.pivotal.gemfire', name: 'geode-core', version: '9.0.3'
 
 }
 

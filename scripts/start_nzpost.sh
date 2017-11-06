@@ -2,7 +2,7 @@
 
 ps aux | grep geode | grep -v grep | awk '{ print $2 }' | xargs kill 
 
-cd ../gemfire/pivotal-gemfire-9.0.3/bin
+cd ../gemfire/pivotal-gemfire-9.1.1/bin
 rm -f loc1/vf.gf.locator.pid
 
 ./gfsh <<!
